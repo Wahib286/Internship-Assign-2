@@ -3,6 +3,7 @@
 ## npm install
 ## npm run dev 
 
+Run these two command on your terminal to see the project on your localhost:3000
 i have used npm concurrently and setup the json file
 
 This project is for EmptyCup! Thank you for providing this wonderful internship opportunity and for the assignment to help me grow as a developer.
