@@ -6,7 +6,7 @@ import {
   HiClipboardList,
   HiSortAscending,
 } from "react-icons/hi";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const icons = {
   contacts: HiMenu,
@@ -17,6 +17,9 @@ const icons = {
 };
 
 const NavTabs = ({ navTabs, activeTab, setActiveTab }) => {
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+
   // Split tabs: left (first 3) and right (remaining)
   const leftTabs = navTabs.slice(0, 3);
   const rightTabs = navTabs.slice(3);
@@ -27,15 +30,16 @@ const NavTabs = ({ navTabs, activeTab, setActiveTab }) => {
       <div className="flex">
         {leftTabs.map((tab) => {
           const Icon = icons[tab.id];
-          const isActive = activeTab === tab.id;
+          const isActive = isHome
+            ? tab.id === "contacts" // 👈 On home, only contacts active
+            : activeTab === tab.id; // 👈 Else, use activeTab
           return (
             <div
               key={tab.id}
               className={`text-center py-3 px-4 cursor-pointer ${
                 isActive ? "text-[#E0A64E]" : "text-[#3A312E]"
               }`}
-              onClick={() => setActiveTab(tab.id)}
-            >
+              onClick={() => setActiveTab(tab.id)}>
               <Link to={`/${tab.id}`} className="flex flex-col items-center">
                 {Icon && <Icon className="text-lg" />}
                 <div className="text-xs">{tab.label}</div>
@@ -49,15 +53,16 @@ const NavTabs = ({ navTabs, activeTab, setActiveTab }) => {
       <div className="flex">
         {rightTabs.map((tab) => {
           const Icon = icons[tab.id];
-          const isActive = activeTab === tab.id;
+          const isActive = isHome
+            ? false // 👈 On home, no right tab is active
+            : activeTab === tab.id;
           return (
             <div
               key={tab.id}
               className={`text-center py-3 px-4 cursor-pointer ${
                 isActive ? "text-[#E0A64E]" : "text-[#3A312E]"
               }`}
-              onClick={() => setActiveTab(tab.id)}
-            >
+              onClick={() => setActiveTab(tab.id)}>
               <Link to={`/${tab.id}`} className="flex flex-col items-center">
                 {Icon && <Icon className="text-lg" />}
                 <div className="text-xs">{tab.label}</div>

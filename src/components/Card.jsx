@@ -9,18 +9,25 @@ import {
   HiOutlineBookmark,
 } from "react-icons/hi";
 import Stars from "../Elements/Stars";
+import { useAppContext } from "../contexts/AppContext";
 
 const DesignerCard = ({ designer, index }) => {
   const colors = ["bg-[#FFFFFF]", "bg-[#FFFCF2]"];
   const [isHidden, setIsHidden] = useState(false);
-  const [isBookmarked, setIsBookmarked] = useState(false);
+  const { bookmarkedItems, toggleBookmark } = useAppContext();
+
+  const isBookmarked = bookmarkedItems.some(d => d.id === designer.id);
+  
 
   const handleAction = (action) => {
     console.log(`${action} clicked for designer ${designer.id}`);
   };
 
   return (
-    <div className={`flex flex-row  h-[284px] shadow-sm  p-5 ${colors[designer.id % 2]}`}>
+    <div
+      className={`flex flex-row  h-[284px] shadow-sm  p-5 ${
+        colors[designer.id % 2]
+      }`}>
       {/*Box1 */}
       <div className="w-[80%] flex flex-col pr-4">
         <div className="mb-3">
@@ -38,21 +45,23 @@ const DesignerCard = ({ designer, index }) => {
           <div className="text-center">
             <div className="font-bold text-[24px] text-black">
               {designer.projects}
-              <div className="text-[10px] text-gray-500 font-medium">Projects</div>
+              <div className="text-[10px] text-gray-500 font-medium">
+                Projects
+              </div>
             </div>
           </div>
           <div className="text-center">
             <div className="font-bold text-[24px] text-black">
               {designer.years}
-            
-            <div className="text-[10px] text-gray-500 font-medium">Years</div>
+
+              <div className="text-[10px] text-gray-500 font-medium">Years</div>
             </div>
           </div>
           <div className="text-center">
             <div className="font-bold text-[24px] text-black">
               {designer.price}
-            
-            <div className="text-[10px] text-gray-500 font-medium">Price</div>
+
+              <div className="text-[10px] text-gray-500 font-medium">Price</div>
             </div>
           </div>
         </div>
@@ -99,24 +108,19 @@ const DesignerCard = ({ designer, index }) => {
         </button>
 
         <button
-          onClick={() => {
-            setIsBookmarked(!isBookmarked);
-            handleAction("Bookmark");
-          }}
-          className={`w-10 h-10 rounded-full flex flex-col items-center justify-center transition-all duration-200 ${
-            isBookmarked
-              ? "text-[#8D4337]  hover:text-orange-600"
-              : "text-[#8D4337]  hover:text-orange-600"
-          }`}>
-          {isBookmarked ? (
-            <HiBookmark className="text-lg" />
-          ) : (
-            <HiOutlineBookmark className="text-xlg" />
-          )}
-          <span className="text-[7px] text-[#8D4337] mt-1">
-            {isBookmarked ? "Shortlist" : "Shortlisted"}
-          </span>
-        </button>
+  onClick={() => {
+    toggleBookmark(designer);
+    handleAction("Bookmark");
+  }}
+  className={`w-10 h-10 rounded-full flex flex-col items-center justify-center transition-all duration-200 ${
+    isBookmarked ? "text-[#8D4337] hover:text-orange-600" : "text-[#8D4337] hover:text-orange-600"
+  }`}>
+  {isBookmarked ? <HiBookmark className="text-lg" /> : <HiOutlineBookmark className="text-xlg" />}
+  <span className="text-[7px] text-[#8D4337] mt-1">
+    {isBookmarked ? "Shortlisted" : "Shortlist"}
+  </span>
+</button>
+
 
         <button
           onClick={() => handleAction("Report")}
