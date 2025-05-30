@@ -7,8 +7,8 @@ I appreciate the learning experience through this project.
 
 ---
 
-## How to run
-###npm run dev 
+# How to run
+## npm run dev 
 
 i have used npm concurrently and setup the json file
 
