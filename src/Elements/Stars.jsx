@@ -17,7 +17,7 @@ const Stars = ({ rating }) => {
       stars.push(<HiStar key={i} className="text-black inline" />);
     } else {
       // Empty star (white)
-      stars.push(<HiStar key={i} className="text-white inline" />);
+      stars.push(<HiStar key={i} className="text-slate-300 inline" />);
     }
   }
 

@@ -30,7 +30,7 @@ const designers = [
   {
     id: 2,
     name: 'Studio D3',
-    rating: 5,
+    rating: 4,
     description: 'Another description...',
     projects: 43,
     years: 6,

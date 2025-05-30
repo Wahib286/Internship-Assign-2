@@ -22,7 +22,7 @@ const NavTabs = ({ navTabs, activeTab, setActiveTab }) => {
   const rightTabs = navTabs.slice(3);
 
   return (
-    <div className="flex justify-between bg-white border-b">
+    <div className="flex justify-between bg-white border-b overflow-hidden">
       {/* Left Tabs */}
       <div className="flex">
         {leftTabs.map((tab) => {
@@ -32,7 +32,7 @@ const NavTabs = ({ navTabs, activeTab, setActiveTab }) => {
             <div
               key={tab.id}
               className={`text-center py-3 px-4 cursor-pointer ${
-                isActive ? "text-orange-400" : "text-gray-700"
+                isActive ? "text-[#E0A64E]" : "text-[#3A312E]"
               }`}
               onClick={() => setActiveTab(tab.id)}
             >
@@ -54,7 +54,7 @@ const NavTabs = ({ navTabs, activeTab, setActiveTab }) => {
             <div
               key={tab.id}
               className={`text-center py-3 px-4 cursor-pointer ${
-                isActive ? "text-orange-400" : "text-gray-700"
+                isActive ? "text-[#E0A64E]" : "text-[#3A312E]"
               }`}
               onClick={() => setActiveTab(tab.id)}
             >

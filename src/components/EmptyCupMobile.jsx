@@ -4,14 +4,14 @@ import NavTabs from "./NavTabs";
 import DesignerCard from "./Card";
 import Logo from "../Images/Logo.png";
 import { Link } from "react-router-dom";
-import axios from "axios"; // Axios use karenge backend se data laane ke liye
+import axios from "axios"; 
 
 const EmptyCupMobile = () => {
   const [activeTab, setActiveTab] = useState("contacts");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [navTabs, setNavTabs] = useState([]); // Backend se aayega
-  const [designers, setDesigners] = useState([]); // Backend se aayega
-  const [loading, setLoading] = useState(true); // Loading state
+  const [navTabs, setNavTabs] = useState([]); 
+  const [designers, setDesigners] = useState([]); 
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,7 +24,7 @@ const EmptyCupMobile = () => {
         );
         setNavTabs(navTabsResponse.data);
         setDesigners(designersResponse.data);
-        setLoading(false); // Loading complete
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -42,7 +42,7 @@ const EmptyCupMobile = () => {
   }
 
   return (
-    <div className="font-sans text-gray-800 max-w-sm mx-auto min-h-screen">
+    <div className="font-sans text-gray-800 max-w-[360px] mx-auto min-h-screen">
       <header className="relative flex items-center justify-between p-4 bg-white border-b">
         <div className="flex items-center">
           <Link to="/">
