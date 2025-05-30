@@ -1,5 +1,6 @@
 # Internship-Assign-2
 # How to run
+## npm install
 ## npm run dev 
 
 i have used npm concurrently and setup the json file
